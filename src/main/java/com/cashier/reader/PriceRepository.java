@@ -1,5 +1,5 @@
 package com.cashier.reader;
 
-public interface Repository {
+public interface PriceRepository {
 	String getPriceBy(String code);
 }
