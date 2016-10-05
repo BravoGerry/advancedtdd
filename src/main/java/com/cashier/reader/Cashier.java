@@ -17,8 +17,6 @@ public class Cashier {
 		this.scanner = scanner;
 	}
 
-	public void findPrice() {
-	}
 
 	public void sell() {
 		double total = 0.0;
@@ -29,20 +27,10 @@ public class Cashier {
 	}
 
 	public void acquire() {
-		final String code = scanner.scan();
-		final double price = catalog.getPriceBy(code);
-		cart.add(new Product(code, price));
-
+		String code = scanner.scan();
+		Product product = catalog.get(code);
+		cart.add(product);
+		display.show(String.format("%.2f G" + (product.regionalTax?"P":""), product.price));
 	}
 
-	private class Product {
-		final String code;
-		final double price;
-
-		public Product(String code, double price) {
-
-			this.code = code;
-			this.price = price;
-		}
-	}
 }

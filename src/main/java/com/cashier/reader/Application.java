@@ -17,9 +17,9 @@ public class Application {
     private static CatalogInMemory oneEuroCatalog() {
         CatalogInMemory catalog = new CatalogInMemory();
 
-        catalog.add("001", 1.00);
-        catalog.add("002", 1.00);
-        catalog.add("003", 1.00);
+        catalog.put("001", new Product("001", 1.00, false));
+        catalog.put("002", new Product("002", 1.00, false));
+        catalog.put("003", new Product("003", 1.00, false));
         return catalog;
     }
 

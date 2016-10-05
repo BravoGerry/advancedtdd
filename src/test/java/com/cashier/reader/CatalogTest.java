@@ -1,23 +1,28 @@
 package com.cashier.reader;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class CatalogTest {
 	@Test
 	public void notFound() throws Exception {
-		Assert.assertEquals(null, emptyCatalog().getPriceBy("::missing::"));
+		assertEquals(null, emptyCatalog().get("::missing::"));
 	}
 
 	@Test
 	public void found() throws Exception {
-		Assert.assertEquals(new Double(100.0), catalogWith("::existing::", 100).getPriceBy("::existing::"));
+		Catalog catalog = catalogWith("::existing::", new Product("::existing::", 100.0, false));
+		Product product = catalog.get("::existing::");
+		assertEquals(100.0, product.price, 0.0);
+		assertEquals("::existing::", product.code);
+		assertEquals(false, product.regionalTax);
 	}
 
-	private Catalog catalogWith(String barcode, double price) {
+	private Catalog catalogWith(String barcode, Product product) {
 		CatalogInMemory catalogInMemory = new CatalogInMemory();
-		catalogInMemory.add(barcode, price);
+		catalogInMemory.put(barcode, product);
 		return catalogInMemory;
 	}
 
