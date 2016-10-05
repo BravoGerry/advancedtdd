@@ -5,8 +5,6 @@ import org.jmock.integration.junit4.JUnitRuleMockery;
 import org.junit.Rule;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
 public class CashierTest {
 
 	@Rule
@@ -28,8 +26,8 @@ public class CashierTest {
 			oneOf(display).show("11.00 EUR");
 		}});
 
-		cashier.next();
-		cashier.next();
+		cashier.acquire();
+		cashier.acquire();
 
 		cashier.sell();
 

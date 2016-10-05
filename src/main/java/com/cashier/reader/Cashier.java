@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cashier {
-	private final Catalog repository;
+	private final Catalog catalog;
 	private final Display display;
 	private final Scanner scanner;
 
@@ -12,7 +12,7 @@ public class Cashier {
 
 
 	public Cashier(Catalog catalog, Display display, Scanner scanner) {
-		repository = catalog;
+		this.catalog = catalog;
 		this.display = display;
 		this.scanner = scanner;
 	}
@@ -28,9 +28,9 @@ public class Cashier {
 		display.show(String.format("%.2f EUR", total));
 	}
 
-	public void next() {
+	public void acquire() {
 		final String code = scanner.scan();
-		final double price = repository.getPriceBy(code);
+		final double price = catalog.getPriceBy(code);
 		cart.add(new Product(code, price));
 
 	}
