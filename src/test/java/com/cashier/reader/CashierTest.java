@@ -1,7 +1,9 @@
 package com.cashier.reader;
 
 import org.jmock.Expectations;
+import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -9,10 +11,20 @@ public class CashierTest {
 
 	@Rule
 	public JUnitRuleMockery context = new JUnitRuleMockery();
-	private Catalog catalog = context.mock(Catalog.class);
-	private Scanner scanner = context.mock(Scanner.class);
-	private Display display = context.mock(Display.class);
-	final Cashier cashier = new Cashier(catalog, display, scanner);
+
+	@Mock
+	private Catalog catalog;
+	@Mock
+	private Scanner scanner;
+	@Mock
+	private Display display;
+
+	Cashier cashier;
+
+	@Before
+	public void setUp() {
+		cashier = new Cashier(catalog, display, scanner);
+	}
 
 
 	@Test
@@ -42,7 +54,6 @@ public class CashierTest {
 		cashier.acquire();
 
 	}
-
 
 
 }
